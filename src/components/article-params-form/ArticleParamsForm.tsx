@@ -3,7 +3,7 @@ import { Button } from 'components/button';
 import { Text } from '../text';
 
 import styles from './ArticleParamsForm.module.scss';
-import { SyntheticEvent, useRef, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { RadioGroup } from '../radio-group';
 import {
@@ -25,7 +25,7 @@ type ArticleParamsFormProps = {
 };
 
 export const ArticleParamsForm = ({ setState }: ArticleParamsFormProps) => {
-	const [isSidebarOpen, setSidebarOpen] = useState<boolean>(false);
+	const [isSidebarOpen, setSidebarOpen] = useState(false);
 
 	const [formState, setFormState] =
 		useState<ArticleStateType>(defaultArticleState);
@@ -46,12 +46,12 @@ export const ArticleParamsForm = ({ setState }: ArticleParamsFormProps) => {
 		setFormState({ ...formState, [field]: value });
 	};
 
-	const formSubmit = (e: SyntheticEvent) => {
+	const formSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setState(formState);
 	};
 
-	const formReset = (e: SyntheticEvent) => {
+	const formReset = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setFormState(defaultArticleState);
 		setState(defaultArticleState);
